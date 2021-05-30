@@ -1,0 +1,36 @@
+# auto indent
+set autoindent
+
+# display line numbers
+set linenumbers
+
+# enable backup (${filename}+"~")
+set backup
+
+# backup dir
+set backupdir "$HOME/.nano/tmp"
+
+# allow multiple files
+set multibuffer
+
+# disable wrapping
+set nowrap
+
+set softwrap
+
+# enable suspend
+set suspend
+
+# set tab size
+set tabsize 2
+
+# convert tab to spaces
+set tabstospaces
+
+# Syntax highlight
+include "/usr/share/nano/*.nanorc"
+
+# Color
+#set titlecolor white,green
+#set numbercolor white,green
+#set selectedcolor white,green

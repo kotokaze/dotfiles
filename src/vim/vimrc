@@ -1,0 +1,110 @@
+" dein Scripts-----------------------------
+
+" dein install dir
+" install dir {{{
+let s:vim_dir = expand('$HOME/.vim')
+let s:dein_dir = s:vim_dir . '/dein'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let s:plugin_dir = s:vim_dir . '/pack'
+" }}}
+
+" dein instllation check {{{
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone --depth=1 https://github.com:Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . s:dein_repo_dir
+endif
+" }}}
+
+" begin settings {{{
+if dein#load_state(s:plugin_dir)
+  call dein#begin(s:plugin_dir)
+
+  " Let dein manage dein (Required)
+  call dein#add(s:dein_dir)
+
+  " .toml files
+  let s:config_dir = s:vim_dir . '/config'
+  if !isdirectory(s:config_dir)
+    call mkdir(s:config_dir, 'p')
+  endif
+
+  " read toml files
+  call dein#load_toml(s:config_dir . '/dein.toml', {'lazy': 0})
+  call dein#load_toml(s:config_dir . '/lazy.toml', {'lazy': 1})
+
+  " end settings
+  call dein#end()
+  call dein#save_state()
+endif
+" }}}
+
+" plugin installation check {{{
+if dein#check_install()
+  call dein#install()
+endif
+" }}}
+
+" plugin remove check {{{
+let s:removed_plugins = dein#check_clean()
+if len(s:removed_plugins) > 0
+  call map(s:removed_plugins, "delete(v:val, 'rf')")
+  call dein#recache_runtimepath()
+endif
+" }}}
+
+" End dein Scripts-------------------------
+
+filetype plugin indent on
+
+" display line number
+set number
+ 
+" line highlight
+set cursorline
+
+" syntax highlight
+syntax enable
+
+" search highlight
+set hlsearch
+
+" auto search
+set incsearch
+
+" show command candidates
+set wildmenu
+
+" clip board
+set clipboard+=unnamed
+
+" encode
+set fileencodings=utf-8
+
+" smart indent
+set smartindent
+
+" convert tab to spaces
+set expandtab
+
+" tab size
+set tabstop=2
+
+" auto indent
+set shiftwidth=2
+
+" consecutive spaces
+set softtabstop=2
+
+" CTRL-C to copy
+"vmap y
+
+" CTRL-X to cut (visual mode)
+"vmap  x
+
+" CTRL-V to paste (insert mode)
+"imap  P
+
+" END OF VIMRC-----------------------------
+
