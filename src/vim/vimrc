@@ -3,15 +3,15 @@
 " dein install dir
 " install dir {{{
 let s:vim_dir = expand('$HOME/.vim')
-let s:dein_dir = s:vim_dir . '/dein'
+let s:dein_dir = expand('$HOME/.local/share/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-let s:plugin_dir = s:vim_dir . '/pack'
+let s:plugin_dir = s:vim_dir . '/bundle'
 " }}}
 
 " dein instllation check {{{
 if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
-    execute '!git clone --depth=1 https://github.com:Shougo/dein.vim' s:dein_repo_dir
+    execute '!gh repo clone --depth=1 Shougo/dein.vim s:dein_repo_dir
   endif
   execute 'set runtimepath^=' . s:dein_repo_dir
 endif
@@ -25,14 +25,14 @@ if dein#load_state(s:plugin_dir)
   call dein#add(s:dein_dir)
 
   " .toml files
-  let s:config_dir = s:vim_dir . '/config'
+  let s:config_dir = '$HOME/.cache/dotfiles/src/vim/config'
   if !isdirectory(s:config_dir)
     call mkdir(s:config_dir, 'p')
   endif
 
   " read toml files
   call dein#load_toml(s:config_dir . '/dein.toml', {'lazy': 0})
-  call dein#load_toml(s:config_dir . '/lazy.toml', {'lazy': 1})
+  call dein#load_toml(s:config_dir . '/lazy_dein.toml', {'lazy': 1})
 
   " end settings
   call dein#end()
@@ -60,7 +60,7 @@ filetype plugin indent on
 
 " display line number
 set number
- 
+
 " line highlight
 set cursorline
 
@@ -82,6 +82,9 @@ set clipboard+=unnamed
 " encode
 set fileencodings=utf-8
 
+" file format
+set fileformats=unix
+
 " smart indent
 set smartindent
 
@@ -97,14 +100,4 @@ set shiftwidth=2
 " consecutive spaces
 set softtabstop=2
 
-" CTRL-C to copy
-"vmap y
-
-" CTRL-X to cut (visual mode)
-"vmap  x
-
-" CTRL-V to paste (insert mode)
-"imap  P
-
 " END OF VIMRC-----------------------------
-

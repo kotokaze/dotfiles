@@ -1,2 +1,2 @@
-Dotfiles
-
+# Dotfiles
+Locate in `~/.cache`

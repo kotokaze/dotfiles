@@ -33,11 +33,6 @@ hook_add = '''
     \ },
     \ }
 '''
-#    \ clangd: {
-#    \  'cmd': ['clangd-6.0']
-#    \ }},
-#
-#'''
 
 [[plugins]]
 repo = 'liuchengxu/vista.vim'
@@ -54,8 +49,8 @@ hook_source = '''
 
 [[plugins]]
 repo = 'lighttiger2505/deoplete-vim-lsp'
-on_i = 1
 depends = ['deoplete.nvim']
+on_i = 1
 hook_add = '''
 inoremap <expr><tab> pumvisible() ? "\<C-n>" :
         \ neosnippet#expandable_or_jumpable() ?
@@ -130,9 +125,6 @@ repo = 'tomtom/tcomment_vim'
 on_i = 1
 
 [[plugins]]
-repo = 'previm/previm'
-
-[[plugins]]
 repo = 'markonm/traces.vim'
 
 [[plugins]]
@@ -142,4 +134,3 @@ on_ft = ['toml']
 [[plugins]]
 repo = 'mattn/vim-maketable'
 on_ft = ['markdown', 'md']
-

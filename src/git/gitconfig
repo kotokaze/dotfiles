@@ -4,4 +4,6 @@
 [color]
 	ui = true
 [core]
-	editor = vim
+	editor = nano
+[commit]
+	template = /Users/admin/.gitmessage.txt

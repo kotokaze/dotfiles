@@ -16,8 +16,6 @@ set multibuffer
 # disable wrapping
 set nowrap
 
-set softwrap
-
 # enable suspend
 set suspend
 
