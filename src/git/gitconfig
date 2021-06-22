@@ -1,9 +1,11 @@
 [user]
 	email = 62094392+Kotokaze@users.noreply.github.com
 	name = Kotokaze
+	signingkey = 87611FE966C6663D
 [color]
 	ui = true
 [core]
 	editor = nano
 [commit]
 	template = /Users/admin/.gitmessage.txt
+	gpgsign = true

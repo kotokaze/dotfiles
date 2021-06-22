@@ -1,4 +1,5 @@
 #!/bin/bash
+cd ~
 sudo apt update && sudo apt -y upgrade
 sudo apt install -y \
   language-pack-ja \
@@ -17,10 +18,10 @@ wget -vO ~/.cache/fonts/FantasqueSansMono-Normal.zip https://github.com/belluzj/
 unzip ~/.cache/fonts/FantasqueSansMono-Normal.zip ~/.cache/FantasqueSansMono-Normal
 cp -r ~/.cache/fonts/FantasqueSansMono-Normal/* ~/.fonts
 
-ln -isv .src/git/gitmessage.txt ~/.gitmessage.txt
-ln -isv .src/git/gitconfig ~/.gitconfig
-ln -isv .src/nanorc ~/.nanorc
-ln -isv .src/vim/vimrc ~/.vimrc
+ln -isv ~/.cache/dotfiles/src/git/gitmessage.txt .gitmessage.txt
+ln -isv .cache/dotfiles/src/git/gitconfig .gitconfig
+ln -isv ~/.cache/dotfile/src/nanorc .nanorc
+ln -isv ~/.cache/dotfile/src/vim/vimrc .vimrc
 
 echo 'export LANG=ja_JP.UTF-8' >> ~/.profile
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.profile
