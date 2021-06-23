@@ -4,12 +4,6 @@ set autoindent
 # display line numbers
 set linenumbers
 
-# enable backup (${filename}+"~")
-set backup
-
-# backup dir
-set backupdir "$HOME/.nano/tmp"
-
 # allow multiple files
 set multibuffer
 

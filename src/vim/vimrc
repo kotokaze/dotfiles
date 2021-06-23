@@ -11,7 +11,7 @@ let s:plugin_dir = s:vim_dir . '/bundle'
 " dein instllation check {{{
 if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
-    execute '!gh repo clone --depth=1 Shougo/dein.vim s:dein_repo_dir
+    execute '!git clone --depth=1 https://github.com/Shougo/dein.vim' s:dein_repo_dir
   endif
   execute 'set runtimepath^=' . s:dein_repo_dir
 endif
