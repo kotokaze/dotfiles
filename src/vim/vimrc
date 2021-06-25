@@ -25,7 +25,7 @@ if dein#load_state(s:plugin_dir)
   call dein#add(s:dein_dir)
 
   " .toml files
-  let s:config_dir = '$HOME/.cache/dotfiles/src/vim/config'
+  let s:config_dir = '$HOME/.config/dotfiles/src/vim/config'
   if !isdirectory(s:config_dir)
     call mkdir(s:config_dir, 'p')
   endif

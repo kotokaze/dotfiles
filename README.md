@@ -1,2 +1,2 @@
 # Dotfiles
-Locate in `~/.cache`
+Locate in `~/.config`

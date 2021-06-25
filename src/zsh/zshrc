@@ -61,9 +61,9 @@ export RUBY_CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline) --with
 export GPG_TTY=$(tty)
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+export DOTFILES_ROOT="$HOME/.cache/dotfiles"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/.tools/flutter/bin:$PATH"
-
 
 if [ -d $HOME/.anyenv ]; then
   export PATH="$HOME/.anyenv/bin:$PATH"
@@ -83,6 +83,10 @@ alias pass='cat /dev/urandom | base64 | fold -w 15 | head -n 2'
 alias ffmpeg='docker run --rm -v `pwd`:/tmp/workdir jrottenberg/ffmpeg:3.3'
 alias MP4Box='docker run --rm -v `pwd`:/work sambaiz/mp4box'
 alias java_home='/usr/libexec/java_home'
+alias ll='ls -l'
 
 
 function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;}
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

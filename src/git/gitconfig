@@ -12,6 +12,7 @@
 [core]
 	editor = vim
 	autoCRLF = input
+	symlinks = true
 [commit]
 	template = ~/.gitmessage.txt
 	gpgsign = true
