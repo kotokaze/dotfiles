@@ -100,4 +100,7 @@ set shiftwidth=2
 " consecutive spaces
 set softtabstop=2
 
+" Disable wrap
+set nowrap
+
 " END OF VIMRC-----------------------------
