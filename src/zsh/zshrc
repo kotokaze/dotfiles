@@ -54,7 +54,6 @@ zinit light romkatv/powerlevel10k
 
 # ***********************************************
 
-export HOMEBREW_EDITOR="nano"
 export HOMEBREW_NO_AUTO_UPDATE=1
 export CHROME_EXECUTABLE='/Applications/Google Chrome Dev.app/Contents/MacOS/Google Chrome Dev'
 export RUBY_CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline) --with-openssl-dir=$(brew --prefix openssl@1.1) --with-iconv-dir=$(brew --prefix libiconv)"
@@ -83,10 +82,12 @@ alias pass='cat /dev/urandom | base64 | fold -w 15 | head -n 2'
 alias ffmpeg='docker run --rm -v `pwd`:/tmp/workdir jrottenberg/ffmpeg:3.3'
 alias MP4Box='docker run --rm -v `pwd`:/work sambaiz/mp4box'
 alias java_home='/usr/libexec/java_home'
+alias cd-git-root='cd $(git rev-parse --show-toplevel)'
 alias ll='ls -l'
-
+alias cat='bat'
+alias .='source'
 
 function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;}
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
+export DISPLAY=localhost:0
