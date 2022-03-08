@@ -1,11 +1,6 @@
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [user]
-	email = 62094392+Kotokaze@users.noreply.github.com
-	name = Kotokaze
+	email = 62094392+kotokaze@users.noreply.github.com
+	name = kotokaze
 	signingkey = 87611FE966C6663D
 [color]
 	ui = true
@@ -18,3 +13,13 @@
 	gpgsign = true
 [tag]
 	gpgSign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[help]
+	autocorrect = 50
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/local/bin/gh auth git-credential

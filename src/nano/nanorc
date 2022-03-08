@@ -13,6 +13,9 @@ set nowrap
 # enable suspend
 set suspend
 
+# smooth scrolling
+set smooth
+
 # set tab size
 set tabsize 2
 
