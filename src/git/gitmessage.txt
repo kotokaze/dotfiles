@@ -1,16 +1,16 @@
 
 # ==== Emojis ====
-# 🎉  :tada: ファイルの新規追加
-# 🔥  :fire: ファイルの削除
-# ♻️  :recycle: リモートに合わせる (Pullなど)
-# ✨  :sparkles: 新機能の実装
-# ✅  :white_check_mark: 機能の修正
-# ⚠️  :warning: バグ・エラー修正
-# 📝  :memo: ドキュメント
-# ✏️  :pencil2: タイポの修正
-# 🐧  :penguin: Linux用の何かしらを改善
-# 🍎  :apple: Mac OS用の何かしらを改善
-# ⁉️  :interrobang: よく分からん (ヘルプ要請)
+# ✨ :sparkles: Add new feature
+# ✅  :white_check_mark: Update existing feature (not bug)
+# ⚠️  :warning: Fix bug/error
+# 🔥  :fire: Remove files or features
+# ✏️ :pencil2: Fix typos
+# 📝  :memo: Update documentation
+# ♻️  :recycle: Dependencies update
+# 🐧  :penguin: Improved the Linux
+# 🍎  :apple: Improved the macOS
+# 🔖 :bookmark: Add new library
+# 🎉  :tada: Initial commit
 
 # ==== Format ====
 # :emoji: Subject
