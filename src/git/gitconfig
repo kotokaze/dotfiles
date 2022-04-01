@@ -21,5 +21,4 @@
 [help]
 	autocorrect = 50
 [credential "https://github.com"]
-	helper = 
 	helper = !/usr/local/bin/gh auth git-credential
