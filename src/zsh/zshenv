@@ -29,7 +29,9 @@ export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/config"
 export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
 export PROTOBUF_ROOT="${LOCALOPT}/protobuf"
 export PYTHON_EGG_CACHE="${XDG_CACHE_HOME}/python-eggs"
+export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME}/ripgrep/config"
 export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
+# export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
 
 export MAKE_OPTS="-j$(sysctl -n hw.logicalcpu_max)"
 

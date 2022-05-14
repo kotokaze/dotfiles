@@ -5,6 +5,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+declare -A ZINIT=(
+  [COMPINIT_OPTS]='-C -d "${XDG_CACHE_HOME}/zsh/zcompdump-${ZSH_VERSION}"'
+)
+
 ### Added by Zinit's installer
 if [[ ! -f "${HOME}/.local/share/zinit/zinit.git/zinit.zsh" ]]; then
   print -P "%F{33}▓▒░ %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -41,6 +45,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,underline"
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 bindkey '	' autosuggest-accept
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # Case-insensitive
+zstyle ':completion:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
 
 # Enable p10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
