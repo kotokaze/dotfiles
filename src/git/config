@@ -9,7 +9,7 @@
 	autoCRLF = input
 	symlinks = true
 [commit]
-	template = ~/.gitmessage.txt
+	template = ~/.local/etc/git/message.txt
 	gpgsign = true
 [tag]
 	gpgSign = true
@@ -21,4 +21,8 @@
 [help]
 	autocorrect = 50
 [credential "https://github.com"]
-	helper = !/usr/local/bin/gh auth git-credential
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential

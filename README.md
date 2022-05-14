@@ -1,2 +1,1 @@
 # Dotfiles
-Locate in `~/.config`
