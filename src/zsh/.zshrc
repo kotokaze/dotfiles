@@ -6,7 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 declare -A ZINIT=(
-  [COMPINIT_OPTS]='-C -d "${XDG_CACHE_HOME}/zsh/zcompdump-${ZSH_VERSION}"'
+  [ZCOMPDUMP_PATH]="${XDG_CACHE_HOME:-$HOME/.cache}/zcompdump"
+  [COMPINIT_OPTS]='-C -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-${ZSH_VERSION}"'
 )
 
 ### Added by Zinit's installer
@@ -55,6 +56,9 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # ***********************************************
 
+export HISTFILE="${XDG_STATE_HOME}/zsh/history"
+export HISTORY_IGNORE="(cd|pwd|l[sl])"
+
 test -f "${LOCALOPT}/dotfiles/src/zsh/include.sh" && . $_
 
 ### PKG_CONFIG_PATH
@@ -101,7 +105,7 @@ test -d "${GEM_HOME}/bin" && prepend2path $_
 test -d "${GOPATH}/bin" && prepend2path $_
 
 test -d "${LOCAL}/bin" && prepend2path $_
-test -e "${LOCAL}/scripts/iterm2_shell_integration.zsh" && . "$_"
+test -f "${LOCALOPT}/dotfiles/src/iterm2/iterm2_shell_integration.zsh" && . "$_"
 
 HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
 test -f "${HB_CNF_HANDLER}" && . "${HB_CNF_HANDLER}"

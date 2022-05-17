@@ -1,16 +1,35 @@
 #!/bin/sh
 
-alias pass='cat /dev/urandom | base64 | fold -w 15 | head -n 1 | tee /dev/stderr | pbcopy'
-alias ffmpeg='docker run --rm -v `pwd`:/tmp/workdir jrottenberg/ffmpeg:3.3'
+# docker
+alias ffmpeg='docker run --rm -v `pwd`:/tmp/workdir jrottenberg/ffmpeg:3.3 '
 # alias MP4Box='docker run --rm -v `pwd`:/work sambaiz/mp4box'
-alias cat='bat --paging=never'
+
+# Batcat
+alias cat='bat --paging=never '
+
+# Git
 alias cd-git-root='cd $(git rev-parse --show-toplevel)'
+alias gmv='git mv '
+
+# Disk
+alias df='duf -theme ansi'
+
+# Exa
 alias exa='exa --time-style="long-iso"'
-alias ls='exa --icons'
-alias wget='wget --hsts-file="${XDG_CACHE_HOME}/wget-hsts"'
-alias zip='zip -rT9'
+alias ls='exa --icons '
+alias l='ls -F'
+
+# Create a temporary image
 alias tmp-png='php -r "$i = imagecreate(500, 500); imagecolorallocate($i, 0, 0, 255); imagepng($i, "tmp.png");"'
 
+# Create a random password
+alias pass='cat /dev/urandom | base64 | fold -w 15 | head -n 1 | tee /dev/stderr | pbcopy'
+
+alias where='command -v '
+alias wget='wget --hsts-file="${XDG_CACHE_HOME}/wget-hsts" '
+alias zip='zip -rT9'
+
+# Convert into a GIF
 function gif2() {
   ffmpeg -i $1 -vf fps=10,scale=1280:-1 -r 24 out.gif
 }
@@ -29,9 +48,7 @@ function prepend2path() {
     *:"$1":*)
       ;;
     *)
-      if [[ -d "$1" ]]; then
-        export PATH="$1:$PATH"
-      fi
+      [[ -d "$1" ]] && export PATH="$1:$PATH"
       ;;
   esac
 }
@@ -64,7 +81,6 @@ alias rmi='rm -i'
 alias ..='cd ..'
 
 # Syste
-alias df="df -h"
 alias du="du -h"
 $MAC_OS && alias nproc="echo $(sysctl -n hw.logicalcpu_max)"
 
@@ -117,7 +133,7 @@ function abspath() {
         fi
     fi
 }
-alias abspath="abspath "
+alias abspath='abspath '
 
 # Files
 alias lcf="rename 'y/A-Z/a-z/' "
@@ -125,25 +141,25 @@ alias ucf="rename 'y/a-z/A-Z/' "
 
 # Ubuntu apt
 if [ $OS_UBUNTU ]; then
-  alias apti='sudo apt install'
-  alias apts='apt search'
-  alias aptu='sudo apt update'
-  alias aptuu='sudo aptu; sudo apt upgrade;'
+  alias apti='sudo apt show '
+  alias apts='apt search '
+  alias aptu='sudo apt update '
+  alias aptuu='sudo aptu; sudo apt upgrade'
 fi
 
 # Homebrew
 if [[ "$SHELL" == */zsh ]]; then
   if (( $+commands[brew] )); then
-    alias brewi='brew install'
-    alias brews='brew search'
-    alias brewu='brew update'
+    alias brewi='brew info '
+    alias brews='brew search '
+    alias brewu='brew update '
   fi
 fi
 
 # Git
 alias gstat='git status'
 alias gadd='git add '
-alias gcom='git commit'
+alias gcom='git commit '
 
 # DNS
 alias {hostname2ip,h2ip}='dig +short'
