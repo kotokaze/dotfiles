@@ -68,13 +68,15 @@ PKG_CONFIG_PATH="$(brew --prefix openssl@1.1)/lib/pkgconfig:${PKG_CONFIG_PATH}"
 PKG_CONFIG_PATH="$(brew --prefix qt@5)/lib/pkgconfig:${PKG_CONFIG_PATH}"
 # PKG_CONFIG_PATH="$(brew --prefix graphviz)/lib/pkgconfig:${PKG_CONFIG_PATH}"
 PKG_CONFIG_PATH="${PROTOBUF_ROOT}/lib/pkgconfig:${PKG_CONFIG_PATH}"
+PKG_CONFIG_PATH="${LOCALOPT}/x264/lib/pkgconfig:${PKG_CONFIG_PATH}"
+# PKG_CONFIG_PATH="${LOCALOPT}/ffmpeg/lib/pkgconfig:${PKG_CONFIG_PATH}"
 export PKG_CONFIG_PATH
 
 export OPENSSL_ROOT_DIR="$(brew --prefix openssl@1.1)"
 export OPENSSL_PREFIX_PATH="${OPENSSL_ROOT_DIR}"
 export CMAKE_PREFIX_PATH="$(brew --prefix qt@5)/lib/cmake"
 
-# export CONFIGURE_OPTS="--with-openssl-dir=${OPENSSL_ROOT_DIR}"
+export CONFIGURE_OPTS="--with-openssl-dir=${OPENSSL_ROOT_DIR}"
 export PHP_BUILD_CONFIGURE_OPTS="--with-bz2=$(brew --prefix bzip2) --with-iconv=$(brew --prefix libiconv) --with-tidy=$(brew --prefix tidy-html5) --with-external-pcre=$(brew --prefix pcre2)"
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${OPENSSL_ROOT_DIR}"
@@ -93,6 +95,9 @@ export CPPFLAGS="$(pkg-config --cflags readline) ${CPPFLAGS}"
 
 export LDFLAGS="$(pkg-config --libs protobuf) ${LDFLAGS}"
 export CPPFLAGS="$(pkg-config --cflags protobuf) ${CPPFLAGS}"
+
+export LDFLAGS="$(pkg-config --libs x264) ${LDFLAGS}"
+export CPPFLAGS="$(pkg-config --cflags x264) ${CPPFLAGS}"
 
 test -d "$(brew --prefix bzip2)/bin" && prepend2path $_
 test -d "$(brew --prefix grep)/libexec/gnubin" && prepend2path $_

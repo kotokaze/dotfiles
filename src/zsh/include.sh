@@ -10,6 +10,14 @@ alias cat='bat --paging=never '
 # Git
 alias cd-git-root='cd $(git rev-parse --show-toplevel)'
 alias gmv='git mv '
+alias gbr='git branch '
+alias gbrm='gbr -m '
+alias gck='git checkout '
+alias gckb='gck -b '
+alias gpull='git pull '
+alias gpush='git push '
+alias gfetch='git fetch '
+alias glog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit --date=relative'
 
 # Disk
 alias df='duf -theme ansi'
@@ -17,6 +25,7 @@ alias df='duf -theme ansi'
 # Exa
 alias exa='exa --time-style="long-iso"'
 alias ls='exa --icons '
+alias ll='ls -alFg'
 alias l='ls -F'
 
 # Create a temporary image
@@ -27,16 +36,32 @@ alias pass='cat /dev/urandom | base64 | fold -w 15 | head -n 1 | tee /dev/stderr
 
 alias where='command -v '
 alias wget='wget --hsts-file="${XDG_CACHE_HOME}/wget-hsts" '
-alias zip='zip -rT9'
+
+function trash() {
+  local fpath="$(abspath "$1")"
+  if [ -z fpath ]; then
+    echo "Usage: trash <file>"
+    return 1
+  fi
+  mv ${fpath} "${HOME}/.Trash/$(date +%Y%m%d-%H%M%S)_$(basename ${fpath})"
+}
+alias trash='trash '
 
 # Convert into a GIF
 function gif2() {
-  ffmpeg -i $1 -vf fps=10,scale=1280:-1 -r 24 out.gif
+  ffmpeg -i $(abspath $1) -vf fps=10,scale=1280:-1 -r 24 "$(abspath .)/out.gif"
 }
+alias gif2='gif2 '
+
+function zip2() {
+  zip -rT9 "$(abspath .)/$(basename $1).zip" "$(abspath $1)"
+}
+alias zip2='zip2 '
 
 function md5comp () {
-  md5 -r $1 | rg $2 && echo 'Correct !'
+  md5 -r "$(abspath $1)" | rg $2
 }
+alias md5-comp='md5comp '
 
 function gitignore() {
   curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;
@@ -52,6 +77,7 @@ function prepend2path() {
       ;;
   esac
 }
+alias prepend2path='prepend2path '
 
 # **************************************************************************** #
 # Ref: https://gist.github.com/hightemp/5071909/
@@ -71,7 +97,6 @@ fi
 
 # ls variants
 alias lsd='ls -d .*'
-alias ll='ls -alF'
 
 # Various
 alias mvi='mv -i'
@@ -117,7 +142,7 @@ alias extr='extract '
 
 function extract_and_remove {
   extract $1
-  rm -f $1
+  trash $1
 }
 alias extrr='extract_and_remove '
 
