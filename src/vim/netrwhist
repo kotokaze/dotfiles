@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/Users/kotokaze/.ssh'
+let g:netrw_dirhist_5='/Users/kotokaze/.ssh/conf.d'
+let g:netrw_dirhist_4='/Users/kotokaze/.ssh/conf.d/hosts'
+let g:netrw_dirhist_3='/Users/kotokaze/.local/etc/cloud-init'
+let g:netrw_dirhist_2='/Users/kotokaze/.local/etc'
+let g:netrw_dirhist_1='/Users/kotokaze/.ssh/conf.d'
