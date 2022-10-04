@@ -80,12 +80,17 @@ if len(s:removed_plugins) > 0
 endif
 " }}}
 
+
+if has('persistent_undo')
+  set undofile
+endif
+
 " End dein Scripts-------------------------
 
 filetype plugin indent on
 
 " display line number
-set number
+set relativenumber number
 
 " line highlight
 set cursorline
@@ -128,5 +133,15 @@ set softtabstop=2
 
 " Disable wrap
 set nowrap
+
+
+" Keymap settings--------------------------
+
+" Redo with SHIFT + U
+nmap U <c-r>
+
+" Jump to next/prev section with Ctrl + j and  Ctrl + k
+nmap <C-j> }
+nmap <C-k> {
 
 " END OF VIMRC-----------------------------
