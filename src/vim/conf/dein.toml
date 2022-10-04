@@ -14,9 +14,6 @@ repo = 'roxma/nvim-yarp'
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
 
-[[pligins]]
-repo = 'tpope/vim-fugitive'
-
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
@@ -49,3 +46,72 @@ hook_add = '''
   set noshowmode
 '''
 
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+hook_add = '''
+  set nobackup
+  set nowritebackup
+  let g:coc_config_home = $XDG_CONFIG_HOME . '/coc'
+
+  " Use tab for trigger completion with characters ahead and navigate.
+  " NOTE: There's always complete item selected by default, you may want to enable
+  " no select by `"suggest.noselect": true` in your configuration file.
+  " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+  " other plugin before putting this into your config.
+  inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#confirm() : "\<TAB>"
+
+  fun! ShowDocumentation()
+    if CocAction('hasProvider', 'hover')
+      call CocActionAsync('doHover')
+    else
+      call feedkeys('K', 'in')
+    endif
+  endfunction
+  " Use K to show documentation in preview window.
+  nnoremap <silent> K :call ShowDocumentation()<CR>
+
+  " Highlight the symbol and its references when holding the cursor.
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+
+  " Formatting selected code.
+  xmap <leader>f  <Plug>(coc-format-selected)
+  nmap <leader>f  <Plug>(coc-format-selected)
+
+  " Add `:Format` command to format current buffer.
+  command! -nargs=0 Format :call CocActionAsync('format')
+
+  " Add `:Fold` command to fold current buffer.
+  command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+  " Add `:OR` command for organize imports of the current buffer.
+  command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+'''
+
+# Git diff
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_source = '''
+  set updatetime=250  " update interval for gitgutter (default 4000)
+
+  " Jump to next/previous with g] and g[
+  nnoremap g[ :GitGutterPrevHunk<CR>
+  nnoremap g] :GitGutterNextHunk<CR>
+
+  " Custom colors
+  highlight GitGutterAdd ctermfg=green
+  highlight GitGutterChange ctermfg=blue
+  highlight GitGutterDelete ctermfg=red
+'''
+
+[[plugins]]
+repo = 'github/copilot.vim'
+hook_add = '''
+  let g:copilot_filetypes = {
+    \ '*': v:true,
+    \ 'txt': v:false,
+    \ 'env': v:false,
+    \ }
+  let b:copilot_enabled = v:true
+'''

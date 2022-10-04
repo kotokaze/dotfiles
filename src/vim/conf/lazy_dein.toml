@@ -1,110 +1,11 @@
+# Translation
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
 hook_add = '''
   set helplang=ja
 '''
 
-[[plugins]]
-repo = 'prabirshrestha/vim-lsp'
-depends = ['async.vim']
-hook_add='''
-  noremap <silent> <C-]> : <C-u>LspDefinition<CR>
-  noremap <silent> K : <C-u>LspDocumentDiagnostics<CR>
-  noremap <silent> gd : <C-u>LspDeclaration<CR>
-  noremap <silent> gr : <C-u>LspReferences<CR>
-  noremap <silent> gn : <C-u>LspNextError<CR>
-  noremap <silent> gp : <C-u>LspPreviousError<CR>
-  noremap <silent> gh : <C-u>LspHover<CR>
-  noremap <silent> gtd : <C-u>LspTypeDefinition<CR>
-  noremap <silent> gth : <C-u>LspTypeHierarchy<CR>
-  noremap <silent> gst : <C-u>LspStatus<CR>
-  noremap <silent> <F2> : <C-u>LspRename<CR>
-'''
-
-[[plugins]]
-repo = 'mattn/vim-lsp-settings'
-depends =  ['vim-lsp']
-hook_add = '''
-  let g:lsp_settings = {
-    \ 'pyls-all': {
-    \   'initialization_options': {
-    \     'InterpreterPath': exepath('python3')
-    \   }
-    \ },
-    \ }
-'''
-
-[[plugins]]
-repo = 'liuchengxu/vista.vim'
-hook_add = '''
-let g:vista_default_executive = 'vim_lsp'
-'''
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-depends = ['nvim-yarp', 'vim-hug-neovim-rpc']
-hook_source = '''
-  let g:deoplete#enable_at_startup = 1
-'''
-
-[[plugins]]
-repo = 'lighttiger2505/deoplete-vim-lsp'
-depends = ['deoplete.nvim']
-on_i = 1
-hook_add = '''
-inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-        \ neosnippet#expandable_or_jumpable() ?
-        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-'''
-
-[[plugins]]
-repo = 'ujihisa/neco-look'
-depends = [ 'deoplete.nvim']
-on_i = 1
-
-[[plugins]]
-repo = 'Shougo/neosnippet.vim'
-depends = 'neosnippet-snippets'
-on_i = 1
-hook_add = '''
-  imap <expr><C-k> neosnippet#expandable_or_jumpable() ?
-    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
-  smap <expr><Tab> neosnippet#expandable_or_jumpable() ?
-    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
-  smap <expr><C-k> neosnippet#expandable_or_jumpable() ?
-    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
-  xmap <expr><C-k> neosnippet#expandable_or_jumpable() ?
-    \ "\<Plug>(neosnippet_expand_target)" : "\<Tab>"
-  if has('conceal')
-    set conceallevel=2 concealcursor=niv
-  endif
-'''
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-on_i = 1
-
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-neosnippet.vim'
-depends = ['neosnippet.vim']
-on_i = 1
-
-[[plugins]]
-repo = 'w0rp/ale'
-hook_add = '''
-    let g:ale_sign_column_always = 1
-    let g:ale_fix_on_save = 1
-    let g:ale_completion_enabled = 1
-    let g:ale_sign_error = '⨉'
-    let g:ale_sign_warning = '⚠'
-    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-    let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-    let g:ale_linters = {
-        \   'c' : ['clangd'],
-        \   'cpp' : ['clangd']
-    \}
-'''
-
+# Doxygen
 [[plugins]]
 repo = 'vim-scripts/DoxygenToolkit.vim'
 on_ft = ['c', 'cpp']
@@ -113,24 +14,68 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'jiangmiao/auto-pairs'
-on_i = 1
+repo = 'lambdalisue/glyph-palette.vim'
 
+# Icons
 [[plugins]]
-repo = 'ntpeters/vim-better-whitespace'
-on_i = 1
+repo = 'ryanoasis/vim-devicons'
+depends = ['glyph-palette.vim']
+hook_source = '''
+  set encoding=UTF-8
+  let g:WebDevIcons_enable_nerdtree = 1
+  let g:WebdevIcons_enable_ctrlp = 1
+  let g:WebdevIcons_enable_vimfiler_git_status = 1
+'''
 
+# Filer
 [[plugins]]
-repo = 'tomtom/tcomment_vim'
-on_i = 1
+repo = 'preservim/nerdtree'
+depends = ['vim-devicons']
+hook_add = '''
+  " Disable VIM default filer
+  let g:loaded_netrw=1
+  let g:loaded_netrwPlugin=1
+  let g:loaded_netrwSettings=1
+  let g:loaded_netrwFileHandlers=1
 
+    " Start NERDTree. If a file is specified, move the cursor to its window.
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * NERDTreeFocus | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+  " Exit Vim if NERDTree is the only window remaining in the only tab.
+  autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+  " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+  autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+      \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+  nmap <silent> <C-n> :NERDTreeToggle<CR>
+  nmap <silent> <C-f> :NERDTreeFind<CR>
+'''
+
+# Git
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+# Preview replacements
 [[plugins]]
 repo = 'markonm/traces.vim'
+on_i = 1
 
+# Open browser
 [[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = ['toml']
+repo = 'tyru/open-browser.vim'
 
+# Markdown preview
+[[plugins]]
+repo = 'previm/previm'
+depends = ['open-browser.vim']
+on_ft = ['markdown', 'md']
+hook_add = '''
+  let g:previm_enable_realtime = 1
+'''
+
+# Markdown table
 [[plugins]]
 repo = 'mattn/vim-maketable'
 on_ft = ['markdown', 'md']
