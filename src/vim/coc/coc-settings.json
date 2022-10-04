@@ -1,0 +1,32 @@
+{
+  "languageserver": {
+    "clangd":{
+      "command": "clangd",
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json"
+      ],
+      "filetypes": [
+        "c",
+        "cc",
+        "cpp",
+        "cpp",
+        "c++",
+        "objc",
+        "objcpp"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        },
+        "clang": {
+          "extraArgs": [
+            "-isytem"
+          ]
+        } 
+      }
+    }
+  },
+  "python.analysis.typeCheckingMode": "strict",
+  "python.pythonPath": "~/.local/opt/anyenv/envs/pyenv/versions/vim-runtime/bin/python"
+}
