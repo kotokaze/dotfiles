@@ -1,3 +1,74 @@
+# Coc Extentions ***************************************
+
+[[plugins]]
+repo = 'weirongxu/coc-calc'
+depends = ['coc.nvim']
+
+[[plugins]]
+repo = 'iamcco/coc-spell-checker'
+depends = ['coc.nvim']
+
+# Language supports
+[[plugins]]
+repo = 'clangd/coc-clangd'
+on_ft = ['c', 'cpp', 'objc', 'objcpp']
+depends = ['coc.nvim']
+
+[[plugins]]
+repo = 'neoclide/coc-css'
+on_ft = ['css', 'scss', 'less']
+depends = ['coc.nvim']
+hook_source = '''
+  autocmd FileType css setl iskeyword+=-
+  autocmd FileType scss setl iskeyword+=@-@
+'''
+
+[[plugins]]
+repo = 'josa42/coc-go'
+on_ft = ['go']
+depends = ['coc.nvim']
+
+[[plugins]]
+repo = 'neoclide/coc-json'
+on_ft = ['json']
+depends = ['coc.nvim']
+
+[[plugins]]
+repo = 'fannheyward/coc-pyright'
+on_ft = ['python']
+depends = ['coc.nvim']
+
+[[plugins]]
+repo = 'fannheyward/coc-rust-analyzer'
+on_ft = ['rust']
+depends = ['coc.nvim']
+
+[[plugins]]
+repo = 'josa42/coc-sh'
+depends = ['coc.nvim']
+
+[[plugins]]
+repo = 'fannheyward/coc-texlab'
+depends = ['coc.nvim']
+
+[[plugins]]
+repo = 'kkiyama117/coc-toml'
+on_ft = ['toml']
+depends = ['coc.nvim']
+
+[[plugins]]
+repo = 'fannheyward/coc-xml'
+on_ft = ['xml']
+depends = ['coc.nvim']
+
+[[plugins]]
+repo = 'neoclide/coc-yaml'
+on_ft = ['yaml']
+depends = ['coc.nvim']
+
+# ******************************************************
+
+
 # Translation
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
