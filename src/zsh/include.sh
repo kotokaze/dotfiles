@@ -8,14 +8,18 @@ alias ffmpeg='docker run --rm -v `pwd`:/tmp/workdir jrottenberg/ffmpeg:3.3 '
 alias cat='bat --paging=never '
 
 # Git
+alias g='git'
 alias cd-git-root='cd $(git rev-parse --show-toplevel)'
+alias gcom!='git commit -v --amend '
 alias gmv='git mv '
 alias gbr='git branch '
-alias gbrm='gbr -m '
+alias gbrm='git branch -m '
 alias gck='git checkout '
-alias gckb='gck -b '
-alias gpull='git pull '
-alias gpush='git push '
+alias gckb='git checkout -b '
+alias {gpull,gpl}='git pull '
+alias {gpush,gpu}='git push '
+alias {gpush!,gpu!}='git push --force'
+alias gremote='git remote -v '
 alias gfetch='git fetch '
 alias glog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit --date=relative'
 
@@ -45,28 +49,27 @@ function trash() {
   fi
   mv ${fpath} "${HOME}/.Trash/$(date +%Y%m%d-%H%M%S)_$(basename ${fpath})"
 }
-alias trash='trash '
 
 # Convert into a GIF
 function gif2() {
   ffmpeg -i $(abspath $1) -vf fps=10,scale=1280:-1 -r 24 "$(abspath .)/out.gif"
 }
-alias gif2='gif2 '
 
 function zip2() {
   zip -rT9 "$(abspath .)/$(basename $1).zip" "$(abspath $1)"
 }
-alias zip2='zip2 '
 
 function md5comp () {
   md5 -r "$(abspath $1)" | rg $2
 }
-alias md5-comp='md5comp '
+
+function gtagd() {
+  git tag -d $1 && git push origin :refs/tags/$1
+}
 
 function gitignore() {
   curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;
 }
-alias gi='gitignore '
 
 function prepend2path() {
   case ":${PATH}:" in  # Enclose with `:` for comparison
@@ -77,7 +80,9 @@ function prepend2path() {
       ;;
   esac
 }
-alias prepend2path='prepend2path '
+
+# Exit like Vi
+alias :q='exit'
 
 # **************************************************************************** #
 # Ref: https://gist.github.com/hightemp/5071909/
@@ -164,6 +169,9 @@ alias abspath='abspath '
 alias lcf="rename 'y/A-Z/a-z/' "
 alias ucf="rename 'y/a-z/A-Z/' "
 
+# Vim
+alias v='vim'
+
 # Ubuntu apt
 if [ $OS_UBUNTU ]; then
   alias apti='sudo apt show '
@@ -182,9 +190,10 @@ if [[ "$SHELL" == */zsh ]]; then
 fi
 
 # Git
-alias gstat='git status'
+alias gst='git status'
+alias gb='git branch'
 alias gadd='git add '
-alias gcom='git commit '
+alias gcom='git commit -v '
 
 # DNS
 alias {hostname2ip,h2ip}='dig +short'
