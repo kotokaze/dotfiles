@@ -137,6 +137,29 @@ set nowrap
 
 " Keymap settings--------------------------
 
+" map leader key
+let mapleader = "\<Space>"
+
+" Command line mode
+nmap <leader>; :
+
+" Esc key
+inoremap jj <Esc>
+
+" Quit
+nmap <leader>q :q<CR>
+nmap <leader>Q :q!<CR>
+
+" Save
+nmap <leader>w :w<CR>
+nmap <leader>W :wq<CR>
+
+" Select all
+nmap <leader>a mvggVG$
+
+" Swich window
+nmap <leader><leader> <C-w>w
+
 " Redo with SHIFT + U
 nmap U <c-r>
 
