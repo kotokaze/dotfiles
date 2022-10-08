@@ -89,22 +89,6 @@ hook_add = '''
   command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 '''
 
-# Git diff
-[[plugins]]
-repo = 'airblade/vim-gitgutter'
-hook_source = '''
-  set updatetime=250  " update interval for gitgutter (default 4000)
-
-  " Jump to next/previous with g] and g[
-  nnoremap g[ :GitGutterPrevHunk<CR>
-  nnoremap g] :GitGutterNextHunk<CR>
-
-  " Custom colors
-  highlight GitGutterAdd ctermfg=green
-  highlight GitGutterChange ctermfg=blue
-  highlight GitGutterDelete ctermfg=red
-'''
-
 [[plugins]]
 repo = 'github/copilot.vim'
 hook_add = '''

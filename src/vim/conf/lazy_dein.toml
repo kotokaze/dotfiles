@@ -68,7 +68,6 @@ depends = ['coc.nvim']
 
 # ******************************************************
 
-
 # Translation
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
@@ -86,6 +85,13 @@ hook_source = '''
 
 [[plugins]]
 repo = 'lambdalisue/glyph-palette.vim'
+hook_add = '''
+  augroup my-glyph-palette
+    autocmd! *
+    autocmd FileType fern call glyph_palette#apply()
+    autocmd FileType nerdtree,startify call glyph_palette#apply()
+  augroup END
+'''
 
 # Icons
 [[plugins]]
@@ -116,6 +122,9 @@ hook_add = '''
   " Exit Vim if NERDTree is the only window remaining in the only tab.
   autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
+  " Close the tab if NERDTree is the only window remaining in it.
+  autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
   " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
   autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
       \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
@@ -128,10 +137,56 @@ hook_add = '''
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
+# Git diff
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+  autocmd BufReadPre * GitGutterEnable
+  autocmd BufReadPre *.log GitGutterDisabled
+  let g:gitgutter_highlight_lines = 0
+  let g:gitgutter_highlight_linenrs = 1
+  set updatetime=250  " update interval for gitgutter (default 4000)
+
+  " Jump to next/previous
+  nmap [g :GitGutterPrevHunk<CR>
+  nmap ]g :GitGutterNextHunk<CR>
+
+  " Custom colors
+  highlight GitGutterAdd ctermfg=green
+  highlight GitGutterChange ctermfg=blue
+  highlight GitGutterDelete ctermfg=red
+'''
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+on_i = 1
+
+[[plugins]]
+repo = 'ntpeters/vim-better-whitespace'
+hook_add = '''
+  let g:better_whitespace_enabled=1
+  let g:strip_whitespace_on_save=1
+  let g:show_spaces_that_precede_tabs=1
+
+  " highlight ExtraWhitespace ctermbg=9 guibg=#FF0000
+
+  " highlight whitespace in markdown files, though stripping remains disabled by the blacklist
+  " autocmd FileType markdown EnableWhitespace
+
+  " Do not modify kernel files, even though their type is not blacklisted and highlighting is enabled
+  autocmd BufRead /usr/src/linux* DisableStripWhitespaceOnSave
+'''
+
+# Comment out based on file type
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
+
 # Preview replacements
 [[plugins]]
 repo = 'markonm/traces.vim'
-on_i = 1
 
 # Open browser
 [[plugins]]
