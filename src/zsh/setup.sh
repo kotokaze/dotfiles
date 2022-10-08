@@ -95,7 +95,9 @@ alias ucase='uppercase'
 
 # OS
 [ "$(uname | lcase)" = 'darwin' ] && OS_MAC=true
-if [ !$OS_MAC ] && [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
+if [ $OS_MAC ]; then
+  . ${ZDOTDIR}//macos/include.sh
+elif [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
   [ $(lsb_release -i | cut -d: -f2 | sed s/'^\t'// | lcase) = 'ubuntu' ] && OS_UBUNTU=true
 fi
 
