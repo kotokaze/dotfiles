@@ -1,0 +1,3 @@
+[submodule "gitmessage"]
+	path = src/git/message
+	url = git@gist.github.com:845472cc49a4ad204424a8a56349c901.git
