@@ -115,19 +115,22 @@ hook_add = '''
   let g:loaded_netrwSettings=1
   let g:loaded_netrwFileHandlers=1
 
-    " Start NERDTree. If a file is specified, move the cursor to its window.
   autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * NERDTreeFocus | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+  autocmd VimEnter *
+    \ if argc() > 0 | execute 'NERDTree' argv()[0] | wincmd p |
+    \   if isdirectory(argv()[0]) | enew | execute 'cd '.argv()[0] | endif |
+    \ else | NERDTree |
+    \ endif
 
   " Exit Vim if NERDTree is the only window remaining in the only tab.
-  autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
   " Close the tab if NERDTree is the only window remaining in it.
-  autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
   " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-  autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-      \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+  autocmd BufEnter *
+    \ if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit |
+    \ elseif winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit |
+    \ elseif bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \   let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf |
+    \ endif
 
   nmap <silent> <C-n> :NERDTreeToggle<CR>
   nmap <silent> <C-f> :NERDTreeFind<CR>

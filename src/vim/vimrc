@@ -94,6 +94,11 @@ set relativenumber number
 
 " line highlight
 set cursorline
+augroup auto-cursorcolumn
+  autocmd!
+  autocmd CursorMoved,CursorMovedi,WinLeave * setlocal nocursorcolumn
+  autocmd CursorHold,CursorHoldi * setlocal cursorcolumn
+augroup END
 
 " syntax highlight
 syntax enable
@@ -108,10 +113,10 @@ set incsearch
 set wildmenu
 
 " clip board
-set clipboard+=unnamed
+set clipboard+=unnamed,unnamedplus
 
-" encode
-set fileencodings=utf-8
+" encode (Try to use UTF-8)
+set fileencodings=utf-8,cp932
 
 " file format
 set fileformats=unix
@@ -134,6 +139,15 @@ set softtabstop=2
 " Disable wrap
 set nowrap
 
+" Mouse
+"set mouse=a
+
+" Auto reload vimrc
+augroup source-vimrc
+  autocmd!
+  autocmd BufWritePost *vimrc source ${MYVIMRC} | set foldmethod=marker
+  autocmd BufWritePost *gvimrc if has ('gui_running') source ${MYVIMRC}
+augroup END
 
 " Keymap settings--------------------------
 
