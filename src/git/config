@@ -20,6 +20,8 @@
 	required = true
 [help]
 	autocorrect = 50
+[init]
+	defaultBranch = master
 [credential "https://github.com"]
 	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
