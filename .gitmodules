@@ -1,6 +1,9 @@
+[submodule "bash-powerline"]
+	path = src/bash-powerline
+	url = git@github.com:kotokaze/bash-powerline.git
 [submodule "gitmessage"]
 	path = src/git/message
 	url = git@gist.github.com:845472cc49a4ad204424a8a56349c901.git
-[submodule "src/bash/bash-powerline"]
-	path = src/bash-powerline
-	url = git@github.com:kotokaze/bash-powerline
+[submodule "clang-format"]
+	path = src/clang-format
+	url = git@gist.github.com:6a8846745053991470574f0878b72fb2.git
