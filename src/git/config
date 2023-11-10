@@ -24,9 +24,11 @@
 	defaultBranch = master
 [credential "https://github.com"]
 	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
 	helper = !/usr/bin/gh auth git-credential
+	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !'C:\\tools\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
 [credential "https://gist.github.com"]
 	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
 	helper = !/usr/bin/gh auth git-credential
+	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !'C:\\tools\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
