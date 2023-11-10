@@ -9,7 +9,7 @@
 	autoCRLF = input
 	symlinks = true
 [commit]
-	template = ~/.local/etc/git/message/.gitmessage.txt
+	template = ~/.config/git/message/.gitmessage.txt
 	gpgsign = true
 [tag]
 	gpgSign = true

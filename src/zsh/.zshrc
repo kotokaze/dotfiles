@@ -1,8 +1,8 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 declare -A ZINIT=(
@@ -10,19 +10,19 @@ declare -A ZINIT=(
   [COMPINIT_OPTS]='-C -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-${ZSH_VERSION}"'
 )
 
-# module_path+=( "${HOME}/.local/share/zinit/module/Src" )
+# module_path+=( "${XDG_DATA_HOME}/zinit/module/Src" )
 # zmodload zdharma_continuum/zinit
 
 ### Added by Zinit's installer
-if [[ ! -f "${HOME}/.local/share/zinit/zinit.git/zinit.zsh" ]]; then
+if [[ ! -f "${XDG_DATA_HOME}/zinit/zinit.git/zinit.zsh" ]]; then
   print -P "%F{33}▓▒░ %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-  command mkdir -p "${HOME}/.local/share/zinit" && command chmod g-rwX "${HOME}/.local/share/zinit"
-  command git clone https://github.com/zdharma-continuum/zinit "${HOME}/.local/share/zinit/zinit.git" && \
+  command mkdir -p "${XDG_DATA_HOME}/zinit" && command chmod g-rwX "${XDG_DATA_HOME}/zinit"
+  command git clone https://github.com/zdharma-continuum/zinit "${XDG_DATA_HOME}/zinit/zinit.git" && \
     print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
     print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
 
-source "${HOME}/.local/share/zinit/zinit.git/zinit.zsh"
+source "${XDG_DATA_HOME}/zinit/zinit.git/zinit.zsh"
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -60,7 +60,7 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 #   Fakerr/git-recall
 
 # To customize prompt, run `p10k configure` or edit p10k.zsh
-[[ ! -f "${LOCAL}/etc/zsh/p10k.zsh" ]] || source "${LOCAL}/etc/zsh/p10k.zsh"
+[[ ! -f "${XDG_CONFIG_HOME}/zsh/p10k.zsh" ]] || source "${XDG_CONFIG_HOME}/zsh/p10k.zsh"
 
 bindkey '	' autosuggest-accept
 
