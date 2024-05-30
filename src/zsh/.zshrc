@@ -1,3 +1,7 @@
+# NOTE: Need to be here for overriding /etc/zsh/zshrc
+export HISTFILE="${XDG_STATE_HOME}/zsh/history"
+export HISTORY_IGNORE="(cd|pwd|l[sl]|\:q)"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -10,7 +14,7 @@ declare -A ZINIT=(
   [COMPINIT_OPTS]='-C -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-${ZSH_VERSION}"'
 )
 
-# module_path+=( "${XDG_DATA_HOME}/zinit/module/Src" )
+module_path+=( "${XDG_DATA_HOME}/zinit/module/Src" )
 # zmodload zdharma_continuum/zinit
 
 ### Added by Zinit's installer
@@ -37,6 +41,7 @@ zinit light-mode for \
 FPATH="${LOCAL}/share/zsh/site-functions:${FPATH}"
 
 #  Completion
+autoload -U +X bashcompinit && bashcompinit
 zinit lucid light-mode for \
   atinit"ZINIT[CONIINIT_OPTS]=-C;zicompinit -d ${XDG_CACHE_HOME}/zsh/zcompdump-${ZSH_VERSION}; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
@@ -48,10 +53,10 @@ zinit lucid light-mode for \
 # Customize completion
 export ZSH_AUTOSUGGEST_STRATEGY=(completion)
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,underline"
-export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+# export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}'  # Case-insensitive
-zstyle ':completion:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/zsh/zcompcache"
 
 # Enable p10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
@@ -66,7 +71,5 @@ bindkey '	' autosuggest-accept
 
 # ***********************************************
 
-export HISTFILE="${XDG_STATE_HOME}/zsh/history"
-export HISTORY_IGNORE="(cd|pwd|l[sl])"
-
+export PATH="${LOCAL}/bin:${PATH}"
 . ${ZDOTDIR}/setup.sh

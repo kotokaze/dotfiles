@@ -1,8 +1,19 @@
 #!/bin/sh
 
-# docker
-alias ffmpeg='docker run --rm -v `pwd`:/tmp/workdir jrottenberg/ffmpeg:3.3 '
-# alias MP4Box='docker run --rm -v `pwd`:/work sambaiz/mp4box'
+# Hash
+[ ! -x $(command -v sha256sum) ] && alias sha256sum='shasum -a 256 '
+[ ! -x $(command -v sha512sum) ] && alias sha512sum='shasum -a 512 '
+
+# HTTP-Server
+alias http-server='http-server -p 8080 -c-1 '
+alias hs='http-server '
+
+# SSH
+alias ssh-copy-id='ssh-copy-id -o PreferredAuthentications=password '
+
+# Container
+# [[ $commands[docker] ]] && alias ffmpeg='docker run --rm -v `pwd`:/tmp/workdir jrottenberg/ffmpeg:3.3 '
+# [[ $commands[docker] ]] && alias MP4Box='docker run --rm -v `pwd`:/work sambaiz/mp4box'
 
 # Batcat
 alias cat='bat --paging=never '
@@ -10,7 +21,7 @@ alias cat='bat --paging=never '
 # Git
 alias g='git'
 alias cd-git-root='cd $(git rev-parse --show-toplevel)'
-alias gcom!='git commit -v --amend '
+alias 'gcom!'='git commit -v --amend '
 alias gmv='git mv '
 alias gbr='git branch '
 alias gbrm='git branch -m '
@@ -29,11 +40,15 @@ alias df='duf -theme ansi'
 # Exa
 alias exa='exa --time-style="long-iso"'
 alias ls='exa --icons '
-alias ll='ls -alFg'
+alias ll='ls -alF'
 alias l='ls -F'
 
+# Eza (since exa is depricated)
+alias eza='eza --time-style=long-iso '
+alias ls='eza --icons=always --hyperlink '
+
 # Create a temporary image
-alias tmp-png='php -r "$i = imagecreate(500, 500); imagecolorallocate($i, 0, 0, 255); imagepng($i, "tmp.png");"'
+alias tmp-png="php -r '\$i=imagecreate(500, 500);imagecolorallocate(\$i, 0, 0, 255);imagepng(\$i, \"tmp.png\");'"
 
 # Create a random password
 alias pass='cat /dev/urandom | base64 | fold -w 15 | head -n 1 | tee /dev/stderr | pbcopy'
@@ -96,7 +111,7 @@ alias ucase='uppercase'
 # OS
 [ "$(uname | lcase)" = 'darwin' ] && OS_MAC=true
 if [ $OS_MAC ]; then
-  . ${ZDOTDIR}//macos/include.sh
+  . ${ZDOTDIR}/macos/include.sh
 elif [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
   [ $(lsb_release -i | cut -d: -f2 | sed s/'^\t'// | lcase) = 'ubuntu' ] && OS_UBUNTU=true
 fi

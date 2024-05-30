@@ -140,7 +140,7 @@ set softtabstop=2
 set nowrap
 
 " Mouse
-"set mouse=a
+set mouse=a
 
 " Auto reload vimrc
 augroup source-vimrc

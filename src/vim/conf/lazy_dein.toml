@@ -136,6 +136,13 @@ hook_add = '''
   nmap <silent> <C-f> :NERDTreeFind<CR>
 '''
 
+# Emoji
+[[plugins]]
+repo = 'junegunn/vim-emoji'
+hook_source = '''
+  set completefunc=emoji#complete
+'''
+
 # Git
 [[plugins]]
 repo = 'tpope/vim-fugitive'
@@ -143,11 +150,18 @@ repo = 'tpope/vim-fugitive'
 # Git diff
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
+depends = ['vim-emoji']
 hook_add = '''
   autocmd BufReadPre * GitGutterEnable
   autocmd BufReadPre *.log GitGutterDisabled
   let g:gitgutter_highlight_lines = 0
   let g:gitgutter_highlight_linenrs = 1
+
+  let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+  let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+  let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+  let g:gitgutter_sign_modified_removed = emoji#for('collision')
+
   set updatetime=250  " update interval for gitgutter (default 4000)
 
   " Jump to next/previous

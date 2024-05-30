@@ -2,11 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AiMaxTokens</key>
+	<integer>128000</integer>
+	<key>AiModel</key>
+	<string>gpt-4-turbo</string>
 	<key>AllowClipboardAccess</key>
 	<true/>
 	<key>AlternateMouseScroll</key>
 	<true/>
 	<key>AutoCommandHistory</key>
+	<true/>
+	<key>AutoComposer</key>
 	<false/>
 	<key>BootstrapDaemon</key>
 	<true/>
@@ -38,8 +44,12 @@
 	<true/>
 	<key>EnableRendezvous</key>
 	<true/>
+	<key>EnableSSHFileProvider</key>
+	<false/>
 	<key>EscapeShellCharsWithBackslash</key>
 	<false/>
+	<key>FlashTabBarInFullscreen</key>
+	<true/>
 	<key>HTMLTabTitles</key>
 	<true/>
 	<key>HapticFeedbackForEsc</key>
@@ -674,7 +684,7 @@
 			<key>Non-ASCII Ligatures</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FantasqueSansMono-Regular 18</string>
+			<string>FantasqueSansMNF-Regular 18</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Open Password Manager Automatically</key>
@@ -815,7 +825,7 @@
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
-			<true/>
+			<false/>
 			<key>Use Tab Color</key>
 			<false/>
 			<key>Vertical Spacing</key>
@@ -875,10 +885,16 @@
 		</dict>
 	</dict>
 	<key>PreferredBaseDir</key>
-	<string>~/.local/etc/ierm2</string>
+	<string></string>
 	<key>Print In Black And White</key>
 	<true/>
+	<key>QuickPasteBytesPerCall</key>
+	<integer>1152</integer>
+	<key>QuickPasteDelayBetweenCalls</key>
+	<real>0.0066666663624346256</real>
 	<key>QuitWhenAllWindowsClosed</key>
+	<false/>
+	<key>RememberWindowPositions</key>
 	<false/>
 	<key>SavePasteHistory</key>
 	<true/>
@@ -888,8 +904,25 @@
 	<false/>
 	<key>ShowFullScreenTabBar</key>
 	<false/>
+	<key>ShowHintsInSplitPaneMenuItems</key>
+	<true/>
+	<key>ShowMetalFPSmeter</key>
+	<false/>
 	<key>SmartPlacement</key>
 	<true/>
+	<key>Snippets</key>
+	<array>
+		<dict>
+			<key>guid</key>
+			<string>EB2B9E0C-E508-447B-BFED-5188A854B422</string>
+			<key>title</key>
+			<string>inet-ip</string>
+			<key>value</key>
+			<string>curl -sSL inet-ip.info</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
@@ -898,16 +931,27 @@
 	<integer>0</integer>
 	<key>TabStyleWithAutomaticOption</key>
 	<integer>5</integer>
+	<key>TabViewType</key>
+	<integer>0</integer>
+	<key>TerminalVMargin</key>
+	<integer>5</integer>
 	<key>ThreeFingerEmulates</key>
+	<false/>
+	<key>TolerateUnrecognizedTmuxCommands</key>
 	<false/>
 	<key>ToolbeltTools</key>
 	<array>
 		<string>Jobs</string>
+		<string>Snippets</string>
 		<string>Paste History</string>
 	</array>
 	<key>UIElementRequiresHotkeys</key>
 	<false/>
+	<key>Use background pattern indicator</key>
+	<true/>
 	<key>UseBorder</key>
+	<true/>
+	<key>UseSSHIntegrationForURLOpening</key>
 	<true/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
