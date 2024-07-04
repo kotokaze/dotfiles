@@ -1,43 +1,46 @@
-" dein Scripts-----------------------------
+" XDG Base Directory Settings--------------
+if empty($XDG_CACHE_HOME)  | let $XDG_CACHE_HOME  = $HOME."/.cache"  | endif
+if empty($XDG_CONFIG_HOME) | let $XDG_CONFIG_HOME = $HOME."/.config" | endif
 
-if empty($MYVIMRC) | let $MYVIMRC = expand('<sfile>:p') | endif
+let s:vim_dir = expand($XDG_CACHE_HOME.'/vim')
+let s:config_home = fnameescape(expand($XDG_CONFIG_HOME.'/vim'))
+let s:state_home = fnameescape(s:vim_dir . '/state')
 
-if empty($XDG_CACHE_HOME)  | let $XDG_CACHE_HOME  = $HOME."/.cache"      | endif
-if empty($XDG_CONFIG_HOME) | let $XDG_CONFIG_HOME = $HOME."/.config"      | endif
-if empty($XDG_DATA_HOME)   | let $XDG_DATA_HOME   = $HOME."/.local/share" | endif
-if empty($XDG_STATE_HOME)  | let $XDG_STATE_HOME  = $HOME."/.local/state" | endif
+set runtimepath^=s:config_home
+set runtimepath+=s:vim_dir
+set runtimepath+=s:config_home.'/after'
 
-set runtimepath^=$XDG_CONFIG_HOME/vim
-set runtimepath+=$XDG_DATA_HOME/vim
-set runtimepath+=$XDG_CONFIG_HOME/vim/after
+set packpath^=s:vim_dir,s:config_home
+set packpath+=s:config_home.'/after',s:vim_dir.'/after'
 
-set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim
-set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
+let g:netrw_home = s:vim_dir
+call mkdir(s:vim_dir.'/spell', 'p', 0700)
 
-let g:netrw_home = $XDG_DATA_HOME."/vim"
-call mkdir($XDG_DATA_HOME."/vim/spell", 'p', 0700)
-
-set backupdir=$XDG_STATE_HOME/vim/backup | call mkdir(&backupdir, 'p', 0700)
-set directory=$XDG_STATE_HOME/vim/swap   | call mkdir(&directory, 'p', 0700)
-set undodir=$XDG_STATE_HOME/vim/undo     | call mkdir(&undodir,   'p', 0700)
-set viewdir=$XDG_STATE_HOME/vim/view     | call mkdir(&viewdir,   'p', 0700)
+" NOTE: `set` command cannot concatenate strings
+execute 'set backupdir='.s:state_home . '/backup' | call mkdir(&backupdir, 'p', 0700)
+execute 'set directory='.s:state_home . '/swap'   | call mkdir(&directory, 'p', 0700)
+execute 'set undodir='.s:state_home . '/undo'     | call mkdir(&undodir,   'p', 0700)
+execute 'set viewdir='.s:state_home . '/view'     | call mkdir(&viewdir,   'p', 0700)
 
 if !has('nvim') " Neovim has its own special location
-  set viminfofile=$XDG_STATE_HOME/vim/viminfo
+  execute 'set viminfofile='.s:state_home . '/viminfo'
 endif
+" End XDG Base Directory Settings----------
 
-" dein install dir
-" install dir {{{
-let s:vim_dir = expand('$XDG_DATA_HOME/vim')
+" dein Scripts-----------------------------
+if empty($MYVIMRC) | let $MYVIMRC = expand('<sfile>:p') | endif
+
+" dein install dir {{{
 let s:dein_dir = s:vim_dir . '/dein'
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let s:dein_repo = 'github.com/Shougo/dein.vim'
+let s:dein_repo_dir = s:dein_dir . '/repos/' . s:dein_repo
 let s:plugin_dir = s:vim_dir . '/bundle'
 " }}}
 
 " dein instllation check {{{
 if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone --depth=1 https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  if !isdirectory(expand(s:dein_repo_dir))
+    execute '!git clone --depth=1 ' 'https://'.s:dein_repo  s:dein_repo_dir
   endif
   execute 'set runtimepath^=' . s:dein_repo_dir
 endif
@@ -51,7 +54,7 @@ if dein#load_state(s:plugin_dir)
   call dein#add(s:dein_dir)
 
   " .toml files
-  let s:config_dir = expand('$XDG_CONFIG_HOME/vim/conf')
+  let s:config_dir = expand(s:config_home . '/conf')
   if !isdirectory(s:config_dir)
     call mkdir(s:config_dir, 'p')
   endif
@@ -84,7 +87,6 @@ endif
 if has('persistent_undo')
   set undofile
 endif
-
 " End dein Scripts-------------------------
 
 filetype plugin indent on
@@ -180,5 +182,3 @@ nmap U <c-r>
 " Jump to next/prev section with Ctrl + j and  Ctrl + k
 nmap <C-j> }
 nmap <C-k> {
-
-" END OF VIMRC-----------------------------
