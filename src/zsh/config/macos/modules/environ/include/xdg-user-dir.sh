@@ -1,0 +1,1 @@
+../../../../../../bash/config/macos/modules/environ/include/xdg-user-dir.sh

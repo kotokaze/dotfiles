@@ -26,12 +26,11 @@ hook_add = '''
     \   ],
     \   'right': [
     \     ['lineinfo'],
-    \     ['percent'],
     \     ['fileformat', 'fileencoding', 'filetype', 'charvaluehex'],
     \   ],
     \ },
     \ 'component': {
-    \   'cahrvaluehex': '0x%B',
+    \   'charvaluehex': '0x%B',
     \ },
     \ 'component_function': {
     \   'gitbranch': 'FugitiveHead',
@@ -97,5 +96,5 @@ hook_add = '''
     \ 'txt': v:false,
     \ 'env': v:false,
     \ }
-  let b:copilot_enabled = v:true
+  let b:copilot_enabled = v:false
 '''
